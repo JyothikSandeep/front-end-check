@@ -2,29 +2,30 @@
 import './App.css';
 import axios from 'axios'
 import { useEffect,useState } from 'react';
+import {Route,Routes} from 'react-router-dom'
+import "bootstrap/dist/css/bootstrap.min.css";
+import {BrowserRouter} from 'react-router-dom'
+// components
+import Header from './components/Header';
+import PlayGame from './components/PlayGame';
+import PlayerLobby from './components/PlayerLobby';
+import HomePage from './components/HomePage';
+import Routing from './components/Routing';
+import PageNotFound from './components/PageNotFound';
  function App() {
-  // let d=""
-  const [d,setD]=useState('')
-  const [d1,setD1]=useState('')
-  useEffect(()=>{
-    axios.get("https://backend-check-r9sg.onrender.com").then((data) => {
-      // console.log(data)
-      setD(data);
-    });
-     axios.get("https://backend-check-r9sg.onrender.com/data").then((data) => {
-      //  console.log(data);
-       setD1(data);
-     });
-  },[])
-  //  d=await axios.get("http://localhost:4000/");
   return (
-    <div className="App">
-      {/* <p>hi</p> */}
-      {console.log(d)}
-      <h1>{d.data}</h1>
-      <h1>{d1.data}</h1>
-      
-      
+    <div>
+      <BrowserRouter>
+        <Header></Header>
+        <Routes>
+          <Route path="/" element={<Routing />}>
+            <Route index path="/" element={<HomePage />}></Route>
+            <Route path="/playerLobby" element={<PlayerLobby />}></Route>
+            <Route path="/playgame" element={<PlayGame />}></Route>
+          </Route>
+          <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
