@@ -12,6 +12,7 @@ import PlayerLobby from './components/PlayerLobby';
 import HomePage from './components/HomePage';
 import Routing from './components/Routing';
 import PageNotFound from './components/PageNotFound';
+import Waiting from './components/Waiting';
  function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ import PageNotFound from './components/PageNotFound';
             <Route index path="/" element={<HomePage />}></Route>
             <Route path="/playerLobby" element={<PlayerLobby />}></Route>
             <Route path="/playgame" element={<PlayGame />}></Route>
+            <Route path="/waitingRoom" element={<Waiting />}></Route>
           </Route>
           <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
         </Routes>
