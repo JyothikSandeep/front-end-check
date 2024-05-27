@@ -8,12 +8,12 @@ import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
 import { useEffect } from "react";
 const PlayGame = () => {
+  const location = useLocation();
   useEffect(() => {
     setSocket(io.connect("http://localhost:4000"));
     setName(location.state);
-  }, []);
+  }, [location.state]);
   const [waiting, setWaiting] = useState(true);
-  const location = useLocation();
   // console.log(location.state);
   const [name, setName] = useState();
   const [opponentName, setOpponentName] = useState();
@@ -31,7 +31,7 @@ const PlayGame = () => {
         setWaiting(false);
         setStartWith(data.startsWith);
         setOpponentId(data.id);
-        if (startsWith == "X") {
+        if (startsWith === "X") {
           // setCount(2);
         } else {
           setCount(3);
@@ -94,8 +94,8 @@ const PlayGame = () => {
   // socket.emit("check_for_palyers", { name });
 
   function button1() {
-    if (data[0] == "") {
-      if (count % 2 == 0 && startsWith == "X" && currentMove == "X") {
+    if (data[0] === "") {
+      if (count % 2 === 0 && startsWith === "X" && currentMove === "X") {
         setBtn1({ ...btn1, img: image1, style: "active" });
         let d = data;
         d[0] = "X";
@@ -111,7 +111,7 @@ const PlayGame = () => {
         // setStartWith("O")
         // setCurrentMove("O")
         // setCount(count+1);
-      } else if (startsWith == "O" && currentMove == "O") {
+      } else if (startsWith === "O" && currentMove === "O") {
         setBtn1({ ...btn1, img: image2, style: "active" });
         let d = data;
         d[0] = "O";
@@ -130,8 +130,8 @@ const PlayGame = () => {
     // setActive('')
   }
   function button2() {
-    if (data[1] == "") {
-      if (count % 2 == 0 && startsWith == "X" && currentMove == "X") {
+    if (data[1] === "") {
+      if (count % 2 === 0 && startsWith === "X" && currentMove === "X") {
         setBtn2({ ...btn2, img: image1, style: "active" });
         let d = data;
         d[1] = "X";
@@ -143,7 +143,7 @@ const PlayGame = () => {
           currentMove: "O",
           count: count + 1,
         });
-      } else if (startsWith == "O" && currentMove == "O") {
+      } else if (startsWith === "O" && currentMove === "O") {
         setBtn2({ ...btn2, img: image2, style: "active" });
         let d = data;
         d[1] = "O";
@@ -163,8 +163,8 @@ const PlayGame = () => {
     // setActive("");
   }
   function button3() {
-    if (data[2] == "") {
-      if (count % 2 == 0 && startsWith == "X" && currentMove == "X") {
+    if (data[2] === "") {
+      if (count % 2 === 0 && startsWith === "X" && currentMove === "X") {
         setBtn3({ ...btn3, img: image1, style: "active" });
         let d = data;
         d[2] = "X";
@@ -176,7 +176,7 @@ const PlayGame = () => {
           currentMove: "O",
           count: count + 1,
         });
-      } else if (startsWith == "O" && currentMove == "O") {
+      } else if (startsWith === "O" && currentMove ==="O") {
         setBtn3({ ...btn3, img: image2, style: "active" });
         let d = data;
         d[2] = "O";
@@ -197,8 +197,8 @@ const PlayGame = () => {
     // setActive("");
   }
   function button4() {
-    if (data[3] == "") {
-      if (count % 2 == 0 && startsWith == "X" && currentMove == "X") {
+    if (data[3] === "") {
+      if (count % 2 === 0 && startsWith === "X" && currentMove === "X") {
         setBtn4({ ...btn4, img: image1, style: "active" });
         let d = data;
         d[3] = "X";
@@ -210,7 +210,7 @@ const PlayGame = () => {
           currentMove: "O",
           count: count + 1,
         });
-      } else if (startsWith == "O" && currentMove == "O") {
+      } else if (startsWith === "O" && currentMove === "O") {
         setBtn4({ ...btn4, img: image2, style: "active" });
         let d = data;
         d[3] = "O";
@@ -231,8 +231,8 @@ const PlayGame = () => {
     // setActive("");
   }
   function button5() {
-    if (data[4] == "") {
-      if (count % 2 == 0 && startsWith == "X" && currentMove == "X") {
+    if (data[4] === "") {
+      if (count % 2 === 0 && startsWith === "X" && currentMove === "X") {
         setBtn5({ ...btn5, img: image1, style: "active" });
         let d = data;
         d[4] = "X";
@@ -244,7 +244,7 @@ const PlayGame = () => {
           currentMove: "O",
           count: count + 1,
         });
-      } else if (startsWith == "O" && currentMove == "O") {
+      } else if (startsWith === "O" && currentMove === "O") {
         setBtn5({ ...btn5, img: image2, style: "active" });
         let d = data;
         d[4] = "O";
@@ -265,8 +265,8 @@ const PlayGame = () => {
     // setActive("");
   }
   function button6() {
-    if (data[5] == "") {
-      if (count % 2 == 0 && startsWith == "X" && currentMove == "X") {
+    if (data[5] === "") {
+      if (count % 2 ===0 && startsWith === "X" && currentMove === "X") {
         setBtn6({ ...btn6, img: image1, style: "active" });
         let d = data;
         d[5] = "X";
@@ -278,7 +278,7 @@ const PlayGame = () => {
           currentMove: "O",
           count: count + 1,
         });
-      } else if (startsWith == "O" && currentMove == "O") {
+      } else if (startsWith === "O" && currentMove === "O") {
         setBtn6({ ...btn6, img: image2, style: "active" });
         let d = data;
         d[5] = "O";
@@ -299,8 +299,8 @@ const PlayGame = () => {
     // setActive("");
   }
   function button7() {
-    if (data[6] == "") {
-      if (count % 2 == 0 && startsWith == "X" && currentMove == "X") {
+    if (data[6] === "") {
+      if (count % 2 === 0 && startsWith === "X" && currentMove === "X") {
         setBtn7({ ...btn7, img: image1, style: "active" });
         let d = data;
         d[6] = "X";
@@ -312,7 +312,7 @@ const PlayGame = () => {
           currentMove: "O",
           count: count + 1,
         });
-      } else if (startsWith == "O" && currentMove == "O") {
+      } else if (startsWith === "O" && currentMove === "O") {
         setBtn7({ ...btn7, img: image2, style: "active" });
         let d = data;
         d[6] = "O";
@@ -333,8 +333,8 @@ const PlayGame = () => {
     // setActive("");
   }
   function button8() {
-    if (data[7] == "") {
-      if (count % 2 == 0 && startsWith == "X" && currentMove == "X") {
+    if (data[7] === "") {
+      if (count % 2 === 0 && startsWith === "X" && currentMove === "X") {
         setBtn8({ ...btn8, img: image1, style: "active" });
         let d = data;
         d[7] = "X";
@@ -346,7 +346,7 @@ const PlayGame = () => {
           currentMove: "O",
           count: count + 1,
         });
-      } else if (startsWith == "O" && currentMove == "O") {
+      } else if (startsWith === "O" && currentMove === "O") {
         setBtn8({ ...btn8, img: image2, style: "active" });
         let d = data;
         d[7] = "O";
@@ -367,8 +367,8 @@ const PlayGame = () => {
     // setActive("");
   }
   function button9() {
-    if (data[8] == "") {
-      if (count % 2 == 0 && startsWith == "X" && currentMove == "X") {
+    if (data[8] === "") {
+      if (count % 2 === 0 && startsWith === "X" && currentMove === "X") {
         setBtn9({ ...btn9, img: image1, style: "active" });
         let d = data;
         d[8] = "X";
@@ -380,7 +380,7 @@ const PlayGame = () => {
           currentMove: "O",
           count: count + 1,
         });
-      } else if (startsWith == "O" && currentMove == "O") {
+      } else if (startsWith === "O" && currentMove === "O") {
         setBtn9({ ...btn9, img: image2, style: "active" });
         let d = data;
         d[8] = "O";

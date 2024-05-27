@@ -1,11 +1,11 @@
 import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 // import io from 'socket.io-client'
-import axios from "axios";
+// import axios from "axios";
 import { useState } from "react";
 const PlayerLobby = () => {
   const [name, setName] = useState("");
-  const [d, setD] = useState();
+  // const [d, setD] = useState();
 
   const Navigate = useNavigate();
   function onHandleClick() {
@@ -24,7 +24,7 @@ const PlayerLobby = () => {
   }
   return (
     <div>
-      {console.log(d)}
+      {/* {console.log(d)} */}
       <h1 className="text-center mt-4">Player Lobby</h1>
       {/* <p className='fs-3 text-center text-primary mt-3  '>Enter Player name</p> */}
       <div

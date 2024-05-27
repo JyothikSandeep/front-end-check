@@ -4,9 +4,9 @@ const Header = () => {
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
+        <NavLink class="navbar-brand" to="/home">
           Tic Tac Toe
-        </a>
+        </NavLink>
 
         <div
           class="collapse navbar-collapse"

@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
-import axios from 'axios'
-import { useEffect,useState } from 'react';
+// import axios from 'axios'
+// import { useEffect,useState } from 'react';
 import {Route,Routes} from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BrowserRouter} from 'react-router-dom'
