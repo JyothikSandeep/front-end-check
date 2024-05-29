@@ -4,24 +4,27 @@ import image1 from "../images/img-4.png";
 import image2 from "../images/img-5.png";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-
 import io from "socket.io-client";
 import { useEffect } from "react";
 const PlayGame = () => {
   const location = useLocation();
   useEffect(() => {
-    setSocket(io.connect("https://backend-check-r9sg.onrender.com"));
+    // setSocket(io.connect("https://backend-check-r9sg.onrender.com"));
+    setSocket(io.connect("http://localhost:4000"));
+
     setName(location.state);
   }, [location.state]);
   const [waiting, setWaiting] = useState(true);
   // console.log(location.state);
-  const [name, setName] = useState();
-  const [opponentName, setOpponentName] = useState();
+  const [name, setName] = useState("");
+  const [opponentName, setOpponentName] = useState("");
   const [startsWith, setStartWith] = useState();
   const [socket, setSocket] = useState(false);
   const [currentMove, setCurrentMove] = useState("X");
   const [opponentId, setOpponentId] = useState("");
-
+  const [backgroundColor, setBackgroundColor] = useState("activeColor");
+  const [backgroundColor1, setBackgroundColor1] = useState("");
+  const [display, setDisplay] = useState("");
   if (socket) {
     socket.emit("check_for_palyers", { name });
     socket.on("opponent_found", (data) => {
@@ -31,20 +34,41 @@ const PlayGame = () => {
         setWaiting(false);
         setStartWith(data.startsWith);
         setOpponentId(data.id);
-        if (startsWith === "X") {
+
+        if (data.startsWith === "X") {
           // setCount(2);
+          setDisplay("It's " + name.name + " turn");
         } else {
           setCount(3);
+          setDisplay(data.name.name);
         }
       }
     });
+    // socket.on("check_winner",(data)=>{
+    //   setDisplay(data.name)
+    //   console.log("this is name",data);
+    // })
     socket.on("data_from_client", (data) => {
       console.log(data);
+      setDisplay("It's " + data.currentPlayer.name + " trun");
+
+      if (data.data.currentMove === "X") {
+        setBackgroundColor("activeColor");
+      } else {
+        setBackgroundColor("disableColor");
+      }
+
+      if (data.data.currentMove === "O") {
+        setBackgroundColor1("activeColor");
+        // setBackgroundColor("disableColor");
+      } else {
+        setBackgroundColor1("disableColor");
+      }
       if (data.data?.btn1) {
         setBtn1(data.data.btn1);
         setData(data.data.d);
-        setCurrentMove(data.data.currentMove)
-        setCount(data.data.count)
+        setCurrentMove(data.data.currentMove);
+        setCount(data.data.count);
       } else if (data.data?.btn2) {
         setBtn2(data.data.btn2);
         setData(data.data.d);
@@ -104,9 +128,9 @@ const PlayGame = () => {
           btn1: { ...btn1, img: image1, style: "active" },
           d,
           opponentId,
-          currentMove:"O",
-          count:count+1
-
+          currentMove: "O",
+          // currentPlayer: opponentName.name,
+          count: count + 1,
         });
         // setStartWith("O")
         // setCurrentMove("O")
@@ -121,6 +145,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "X",
+          // currentPlayer: name.name,
+
           count: count + 1,
         });
       }
@@ -141,6 +167,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "O",
+          // currentPlayer: opponentName.name,
+
           count: count + 1,
         });
       } else if (startsWith === "O" && currentMove === "O") {
@@ -153,6 +181,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "X",
+          // currentPlayer: name.name,
+
           count: count + 1,
         });
       }
@@ -174,9 +204,11 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "O",
+          // currentPlayer: opponentName.name,
+
           count: count + 1,
         });
-      } else if (startsWith === "O" && currentMove ==="O") {
+      } else if (startsWith === "O" && currentMove === "O") {
         setBtn3({ ...btn3, img: image2, style: "active" });
         let d = data;
         d[2] = "O";
@@ -186,6 +218,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "X",
+          // currentPlayer: name.name,
+
           count: count + 1,
         });
       }
@@ -208,6 +242,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "O",
+          // currentPlayer: opponentName.name,
+
           count: count + 1,
         });
       } else if (startsWith === "O" && currentMove === "O") {
@@ -220,6 +256,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "X",
+          // currentPlayer: name.name,
+
           count: count + 1,
         });
       }
@@ -242,6 +280,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "O",
+          // currentPlayer: opponentName.name,
+
           count: count + 1,
         });
       } else if (startsWith === "O" && currentMove === "O") {
@@ -254,6 +294,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "X",
+          // currentPlayer: name.name,
+
           count: count + 1,
         });
       }
@@ -266,7 +308,7 @@ const PlayGame = () => {
   }
   function button6() {
     if (data[5] === "") {
-      if (count % 2 ===0 && startsWith === "X" && currentMove === "X") {
+      if (count % 2 === 0 && startsWith === "X" && currentMove === "X") {
         setBtn6({ ...btn6, img: image1, style: "active" });
         let d = data;
         d[5] = "X";
@@ -276,6 +318,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "O",
+          // currentPlayer: opponentName.name,
+
           count: count + 1,
         });
       } else if (startsWith === "O" && currentMove === "O") {
@@ -288,6 +332,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "X",
+          // currentPlayer: name.name,
+
           count: count + 1,
         });
       }
@@ -310,6 +356,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "O",
+          // currentPlayer: opponentName.name,
+
           count: count + 1,
         });
       } else if (startsWith === "O" && currentMove === "O") {
@@ -322,6 +370,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "X",
+          // currentPlayer: name.name,
+
           count: count + 1,
         });
       }
@@ -344,6 +394,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "O",
+          // currentPlayer: opponentName.name,
+
           count: count + 1,
         });
       } else if (startsWith === "O" && currentMove === "O") {
@@ -356,6 +408,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "X",
+          // currentPlayer: name.name,
+
           count: count + 1,
         });
       }
@@ -378,6 +432,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "O",
+          // currentPlayer: opponentName.name,
+
           count: count + 1,
         });
       } else if (startsWith === "O" && currentMove === "O") {
@@ -390,6 +446,8 @@ const PlayGame = () => {
           d,
           opponentId,
           currentMove: "X",
+          // currentPlayer: name.name,
+
           count: count + 1,
         });
       }
@@ -401,53 +459,101 @@ const PlayGame = () => {
   }
   const checkWinner = () => {
     if (data[0] === "X" && data[1] === "X" && data[2] === "X") {
-      setDisplay("playeronewins");
+      if (startsWith === "X") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("playeronewins");
 
       return true;
     } else if (data[3] === "X" && data[4] === "X" && data[5] === "X") {
-      setDisplay("playeronewins");
+      if (startsWith === "X") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("playeronewins");
       return true;
     } else if (data[6] === "X" && data[7] === "X" && data[8] === "X") {
-      setDisplay("playeronewins");
+      if (startsWith === "X") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("playeronewins");
       return true;
     } else if (data[0] === "X" && data[3] === "X" && data[6] === "X") {
-      setDisplay("playerone wins");
+      if (startsWith === "X") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("playerone wins");
       return true;
     } else if (data[1] === "X" && data[4] === "X" && data[7] === "X") {
-      setDisplay("playerone wins");
+      if (startsWith === "X") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("playerone wins");
       return true;
     } else if (data[2] === "X" && data[5] === "X" && data[8] === "X") {
-      setDisplay("playerone wins");
+      if (startsWith === "X") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("playerone wins");
       return true;
     } else if (data[0] === "X" && data[4] === "X" && data[8] === "X") {
-      setDisplay("playerone wins");
+      if (startsWith === "X") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("playerone wins");
       return true;
     } else if (data[2] === "X" && data[4] === "X" && data[6] === "X") {
-      setDisplay("playerone wins");
+      if (startsWith === "X") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("playerone wins");
       return true;
     } else if (data[0] === "O" && data[1] === "O" && data[2] === "O") {
-      setDisplay("player two wins");
+      if (startsWith === "O") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("player two wins");
       return true;
     } else if (data[3] === "O" && data[4] === "O" && data[5] === "O") {
-      setDisplay("player two wins");
+      if (startsWith === "O") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("player two wins");
       return true;
     } else if (data[6] === "O" && data[7] === "O" && data[8] === "O") {
-      setDisplay("player two wins");
+      if (startsWith === "O") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("player two wins");
       return true;
     } else if (data[0] === "O" && data[3] === "O" && data[6] === "O") {
-      setDisplay("player two wins wins");
+      if (startsWith === "O") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("player two wins wins");
       return true;
     } else if (data[1] === "O" && data[4] === "O" && data[7] === "O") {
-      setDisplay("player two wins");
+      if (startsWith === "O") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("player two wins");
       return true;
     } else if (data[2] === "O" && data[5] === "O" && data[8] === "O") {
-      setDisplay("player two wins");
+      if (startsWith === "O") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("player two wins");
       return true;
     } else if (data[0] === "O" && data[4] === "O" && data[8] === "O") {
-      setDisplay("player two wins");
+      if (startsWith === "O") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("player two wins");
       return true;
     } else if (data[2] === "O" && data[4] === "O" && data[6] === "O") {
-      setDisplay("player two wins");
+      if (startsWith === "O") {
+        socket.emit("check_winner", name);
+      }
+      // setDisplay("player two wins");
       return true;
     } else if (
       data[0] &&
@@ -475,7 +581,6 @@ const PlayGame = () => {
   const [btn9, setBtn9] = useState({ style: "inactive", img: "", value: "" });
   const [data, setData] = useState(["", "", "", "", "", "", "", "", ""]);
   const [count, setCount] = useState(2);
-  const [display, setDisplay] = useState("");
 
   return (
     <div>
@@ -489,8 +594,25 @@ const PlayGame = () => {
       ) : (
         <div>
           <h1 className="text-center">{display}</h1>
+          {/* <div className="playersname "> */}
+          {startsWith === "X" ? (
+            <div className="playersname ">
+              <p className={`${backgroundColor}`}>{name.name}</p>
+              <p className={`${backgroundColor1}`}>{opponentName.name}</p>
+            </div>
+          ) : (
+            <div className="playersname ">
+              {" "}
+              <p className={`${backgroundColor1}`}>{name.name}</p>
+              <p className={`${backgroundColor}`}>{opponentName.name}</p>
+            </div>
+          )}
+
+          {/* <p className={`${backgroundColor}`}>{name.name}</p>
+            <p className={`${backgroundColor1}`}>{opponentName.name}</p> */}
+          {/* </div> */}
           <div className="player-box">
-            {console.log(data)}
+            {console.log(name, opponentName)}
             {/* <img src={image} alt="" /> */}
             <div className="first-column">
               <div className="row m-2 ">

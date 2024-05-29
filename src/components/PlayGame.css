@@ -11,6 +11,9 @@
 
     /* align-content: center; */
 }
+body{
+    background-color:rgb(71, 61, 61);
+}
 .player-btn{
     /* background-color: green; */
     /* width: 10%; */
@@ -25,4 +28,23 @@
 
 .inactive{
     display: none;
+}
+
+.playersname{
+    display: flex;
+    /* background-color: aquamarine; */
+    justify-content: space-between;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 60px;
+    padding-top: 10px;
+
+}
+
+.activeColor{
+    background-color: rgb(37, 108, 144);
+
+}
+.disableColor{
+background-color: white;
 }
