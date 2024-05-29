@@ -9,8 +9,8 @@ import { useEffect } from "react";
 const PlayGame = () => {
   const location = useLocation();
   useEffect(() => {
-    // setSocket(io.connect("https://backend-check-r9sg.onrender.com"));
-    setSocket(io.connect("http://localhost:4000"));
+    setSocket(io.connect("https://backend-check-r9sg.onrender.com"));
+    // setSocket(io.connect("http://localhost:4000"));
 
     setName(location.state);
   }, [location.state]);
