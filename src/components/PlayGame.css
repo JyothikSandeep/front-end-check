@@ -4,15 +4,16 @@
     width: 300px;
     height: 265px;
     margin: 0 auto;
-    margin-top: 100px;
+    padding-top: 100px;
     /* justify-content: center; */
     border: solid grey 5px;
     border-radius: 10px;
 
     /* align-content: center; */
 }
-body{
-    background-color:rgb(71, 61, 61);
+.body1{
+    background-color:#282727;
+    height: 88.5vh;
 }
 .player-btn{
     /* background-color: green; */
@@ -36,7 +37,7 @@ body{
     justify-content: space-between;
     width: 30%;
     margin: 0 auto;
-    margin-top: 60px;
+    padding-top: 60px;
     padding-top: 10px;
 
 }
@@ -47,4 +48,14 @@ body{
 }
 .disableColor{
 background-color: white;
+}
+.waiting-text{
+font-size: 30px;
+  text-decoration: none;
+  /* color: rgba(70, 11, 121, 0.989);
+   */
+   color: #48739b;
+  font-weight: bold;
+  font-family: "Anton", sans-serif;
+  padding-top: 20px;
 }

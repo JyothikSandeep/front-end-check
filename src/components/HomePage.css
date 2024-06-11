@@ -1,0 +1,37 @@
+.home-img {
+  width: 200px;
+  height: 200px;
+  /* color: white; */
+  margin: 0 auto;
+  justify-content: center;
+  /* background-color: red;; */
+  margin-left: 44%;
+}
+.welocme-text {
+  font-size: 40px;
+  font-family: "Roboto Slab", serif;
+  color: #0c3e3e;
+  font-weight: 600;
+  padding-top: 30px;
+}
+.btn-1 {
+  width: 120px;
+  height: 50px;
+  background-color: rgba(218, 131, 180, 0.968);
+  /* border: none; */
+  border-radius: 30px;
+  font-size: 15px;
+  font-family: "Roboto Slab", serif;
+  margin-top: 40px;
+  color: white;
+  font-weight: 700;
+  border: 2px solid black;
+  
+  
+}
+.btn-1:hover{
+ background-color: rgba(139, 16, 86, 0.968);
+ color: rgb(188, 179, 179);
+ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ 
+}

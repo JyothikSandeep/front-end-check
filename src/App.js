@@ -13,20 +13,31 @@ import HomePage from './components/HomePage';
 import Routing from './components/Routing';
 import PageNotFound from './components/PageNotFound';
 import Waiting from './components/Waiting';
+import Winner from './components/Winner';
+import {MyContext} from './context/MyContext'
+import { useState } from 'react';
+
  function App() {
+  const [darkMode,setDarkMode]=useState('')
+ const [playing,setIsPlaying]=useState('')
   return (
     <div>
       <BrowserRouter>
-        <Header></Header>
-        <Routes>
-          <Route path="/" element={<Routing />}>
-            <Route index path="/" element={<HomePage />}></Route>
-            <Route path="/playerLobby" element={<PlayerLobby />}></Route>
-            <Route path="/playgame" element={<PlayGame />}></Route>
-            <Route path="/waitingRoom" element={<Waiting />}></Route>
-          </Route>
-          <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
-        </Routes>
+        <MyContext.Provider
+          value={{ darkMode, setDarkMode, playing, setIsPlaying }}
+        >
+          <Header></Header>
+          <Routes>
+            <Route path="/" element={<Routing />}>
+              <Route index path="/" element={<HomePage />}></Route>
+              <Route path="/playerLobby" element={<PlayerLobby />}></Route>
+              <Route path="/playgame" element={<PlayGame />}></Route>
+              <Route path="/waitingRoom" element={<Waiting />}></Route>
+              <Route path="/winner" element={<Winner></Winner>}></Route>
+            </Route>
+            <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
+          </Routes>
+        </MyContext.Provider>
       </BrowserRouter>
     </div>
   );
