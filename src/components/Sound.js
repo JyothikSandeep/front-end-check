@@ -20,7 +20,7 @@ const Sound = () => {
         audio.pause();
         audio.currentTime = 0;
     }
-  },[playing,audio])
+  },[playing])
   return <div>
 
   </div>;
