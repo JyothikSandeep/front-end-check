@@ -14,7 +14,7 @@ const PlayerLobby = () => {
       const clickAudio = new Audio(click);
 
   // const [d, setD] = useState();
-  const { darkMode, setDarkMode } = useContext(MyContext);
+  const { darkMode } = useContext(MyContext);
   useEffect(() => {
     if (darkMode !== "") {
       setBody("body1");

@@ -6,15 +6,15 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
 import { useEffect } from "react";
-import Winner from "./Winner";
-import { useNavigate } from "react-router-dom";
+// import Winner from "./Winner";
+// import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { MyContext } from "../context/MyContext";
 // import { useEffect } from "react";
 const PlayGame = () => {
-  const Navigate = useNavigate();
+  // const Navigate = useNavigate();
   const location = useLocation();
-   const { darkMode, setDarkMode } = useContext(MyContext);
+   const { darkMode } = useContext(MyContext);
   useEffect(() => {
     setSocket(io.connect("https://backend-check-r9sg.onrender.com"));
     // setSocket(io.connect("http://localhost:4000"));

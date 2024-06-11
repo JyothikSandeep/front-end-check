@@ -5,7 +5,7 @@ import { useContext } from "react";
 import background from "../audio/game-music.mp3";
 
 const Sound = () => {
-  const { playing, setIsPlaying } = useContext(MyContext);
+  const { playing } = useContext(MyContext);
 //   console.log(audio)
  const [audio, setAudio] = useState(null);
   useEffect(()=>{
@@ -20,7 +20,7 @@ const Sound = () => {
         audio.pause();
         audio.currentTime = 0;
     }
-  },[playing])
+  },[playing,audio])
   return <div>
 
   </div>;

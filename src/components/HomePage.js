@@ -1,6 +1,6 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
-import tic from '../images/tic-1.svg'
+// import tic from '../images/tic-1.svg'
 import tic1 from '../images/tic-2.svg'
 import './HomePage.css'
 import { useContext } from 'react';
@@ -10,7 +10,7 @@ import {useState} from 'react';
 import click from "../audio/button-click.mp3";
 
 const HomePage = () => {
-  const {darkMode,setDarkMode}=useContext(MyContext)
+  const {darkMode}=useContext(MyContext)
     const clickAudio = new Audio(click);
 
   useEffect(()=>{

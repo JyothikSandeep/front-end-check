@@ -1,11 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import img from "../images/img.png";
 import "./Header.css";
 import { CiLight } from "react-icons/ci";
-import useSound from "use-sound";
-import backgroundMusic from "../audio/game-music.mp3"
+// import useSound from "use-sound";
+// import backgroundMusic from "../audio/game-music.mp3"
 // import { TbMusicOff } from "react-icons/tb";
 import { PiMusicNotesDuotone } from "react-icons/pi";
 import {useState} from 'react'
@@ -15,8 +15,8 @@ import {MyContext} from '../context/MyContext'
 import { useContext } from "react";
 import Sound from "./Sound";
 // import background from "./audio/game-music.mp3";
-import background from "../audio/game-music.mp3"
-import { useEffect } from "react";
+// import background from "../audio/game-music.mp3"
+// import { useEffect } from "react";
 import click from "../audio/button-click.mp3"
 const Header = () => {
   // const audio = new Audio(background);
@@ -33,7 +33,7 @@ const Header = () => {
   const [lightImage,setLightImage]=useState('');
   const [soundOn,setSoundon]=useState('');
   const [textColor1,setTextColor1]=useState('color-1')
-  const { darkMode, setDarkMode,playing, setIsPlaying } = useContext(MyContext);
+  const { darkMode, setDarkMode, setIsPlaying } = useContext(MyContext);
   // console.log(darkMode,setDarkMode)
   // cosnt []
   function handleDarkMode(){
