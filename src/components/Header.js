@@ -4,20 +4,18 @@ import { Link } from "react-router-dom";
 import img from "../images/img.png";
 import "./Header.css";
 import { CiLight } from "react-icons/ci";
-// import useSound from "use-sound";
 // import backgroundMusic from "../audio/game-music.mp3"
 // import { TbMusicOff } from "react-icons/tb";
 import { PiMusicNotesDuotone } from "react-icons/pi";
-import {useState} from 'react'
+import { useState } from "react";
 import { MdNightlight } from "react-icons/md";
 import { TbMusicOff } from "react-icons/tb";
-import {MyContext} from '../context/MyContext'
+import { MyContext } from "../context/MyContext";
 import { useContext } from "react";
-import Sound from "./Sound";
 // import background from "./audio/game-music.mp3";
 // import background from "../audio/game-music.mp3"
 // import { useEffect } from "react";
-import click from "../audio/button-click.mp3"
+import click from "../audio/button-click.mp3";
 const Header = () => {
   // const audio = new Audio(background);
   // audio.loop = true;
@@ -28,24 +26,23 @@ const Header = () => {
   // const [playSound] = useSound(backgroundMusic);
   // const [lightMode,setLightMode]=useState('')
   // const [darkMode,setDarkMode]=useState('')
-  const clickAudio=new Audio(click)
-  console.log(clickAudio)
-  const [lightImage,setLightImage]=useState('');
-  const [soundOn,setSoundon]=useState('');
-  const [textColor1,setTextColor1]=useState('color-1')
+  const clickAudio = new Audio(click);
+  console.log(clickAudio);
+  const [lightImage, setLightImage] = useState("");
+  const [soundOn, setSoundon] = useState("");
+  const [textColor1, setTextColor1] = useState("color-1");
   const { darkMode, setDarkMode, setIsPlaying } = useContext(MyContext);
   // console.log(darkMode,setDarkMode)
   // cosnt []
-  function handleDarkMode(){
-    clickAudio.play()
-    if(darkMode===''){
-      setDarkMode('dark-mode')
+  function handleDarkMode() {
+    clickAudio.play();
+    if (darkMode === "") {
+      setDarkMode("dark-mode");
+    } else {
+      setDarkMode("");
     }
-    else{
-      setDarkMode('')
-    }
-    if(lightImage===''){
-      setLightImage('dark')
+    if (lightImage === "") {
+      setLightImage("dark");
     }
     if (textColor1 === "color-1") {
       setTextColor1("color-2");
@@ -53,22 +50,19 @@ const Header = () => {
       setTextColor1("color-1");
     }
   }
-  function handleSoundMode(){
+  function handleSoundMode() {
     clickAudio.play();
-    if(soundOn===""){
+    if (soundOn === "") {
       setSoundon("sound-on");
-      setIsPlaying("")
-    }
-    else{
-      setSoundon('');
+      setIsPlaying("");
+    } else {
+      setSoundon("");
       setIsPlaying("sound-on");
     }
-    
   }
-  
+
   return (
     <div>
-      <Sound></Sound>
       <div className={`header-align ${darkMode} `}>
         <div>
           <Link class="logo-text" to="/">
